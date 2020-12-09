@@ -1,3 +1,5 @@
+import sys
+
 with open("input", "r") as fd:
     codestream = [int(line.strip()) for line in fd.readlines()]
 
@@ -18,4 +20,4 @@ for windowlength in range(2, len(codestream) - 1):
             contiguouslist.sort()
             answer = contiguouslist[0] + contiguouslist[-1]
             print(f'Answer : {answer}')
-            break
+            sys.exit(0)
