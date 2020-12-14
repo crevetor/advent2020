@@ -1,6 +1,8 @@
 with open("input", "r") as fd:
     timestamp = int(fd.readline().strip())
     buses = [bus for bus in fd.readline().strip().split(",")]
+buses = ['1789','37','47','1889']
+
 
 def part1():
     best_bus = [0, timestamp]
@@ -24,9 +26,8 @@ def found(ts):
 
 def part2():
     max_bus = max([int(bus) for bus in buses if bus != 'x'])
-    mul = int(100000000000000/max_bus) + 1
     max_bus_idx = buses.index(str(max_bus))
-    ts = (mul*max_bus) - max_bus_idx
+    ts = max_bus - max_bus_idx
     while not found(ts):
         ts += max_bus
         if ts%10000 == 0:
