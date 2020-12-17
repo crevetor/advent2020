@@ -9,7 +9,7 @@ CHAR_TO_INT = {
 }
 
 def gen_cube(coords):
-    return [slice(max(coord-1, 0), coord+2) for coord in coords]
+    return tuple([slice(max(coord-1, 0), coord+2) for coord in coords])
 
 def cycle(pocket):
     newpocket = np.copy(pocket)
