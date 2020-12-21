@@ -1,11 +1,14 @@
 import re
 
-with open("input3", "r") as fd:
+MAX_CALLS = 20
+
+with open("input", "r") as fd:
     lines = [line.strip() for line in fd.readlines()]
 
 class Rule:
 
     def __init__(self, idx, rule):
+        self.numcalls = 0
         self.idx = idx
         self.children = {}
         if '"' in rule:
@@ -28,10 +31,12 @@ class Rule:
             if char.isdigit():
                 if int(char) != self.idx:
                     rendered += self.children[int(char)].render()
-                elif int(char) == 8:
-                    rendered += '+'
-                elif int(char) == 11:
-                    rendered += self.children[42].render() + self.children[31].render()
+                else:
+                    if self.numcalls > MAX_CALLS:
+                        return ""
+                    else:
+                        self.numcalls += 1
+                        rendered += self.children[int(char)].render()
             else:
                 rendered += char
         return rendered + ")" if self.hasDependency else rendered
