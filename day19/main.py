@@ -1,6 +1,6 @@
 import re
 
-MAX_CALLS = 20
+MAX_CALLS = 4
 
 with open("input", "r") as fd:
     lines = [line.strip() for line in fd.readlines()]
